@@ -10,9 +10,30 @@
 <body>
     <header class="container">
       <h2 class="heading">Welcome to User Login App</h2>
-      <a href="/auth/google">
-        <button class="btn-coral btn">Login with Google</button>
-      </a>      
+      <% if(user) { %>
+        <div class="nav">
+          <a href="#" class="brand"><%= user.name %></a>
+          <a href="/articles">
+            <button class="btn-red btn">Article</button>
+          </a>
+          <a href="/users/logout">
+            <button class="btn-red btn">LogOut</button>
+          </a>
+        </div>
+      <% } else { %>
+        <div class="nav">
+          <a href="/auth/google">
+            <button class="btn-coral btn">Login with Google</button>
+          </a> 
+          <a href="/auth/github">
+            <button class="btn-blue btn">Login with Github</button>
+          </a>
+          <a href="/articles">
+            <button class="btn-red btn">Article</button>
+          </a>
+        </div>
+      <% } %>
+           
     </header>
 </body>
 </html>

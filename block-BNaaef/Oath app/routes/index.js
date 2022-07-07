@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/success', (req, res, next) => {
-  console.log(req.session, req.user)
   res.render('success');
 });
 
@@ -24,8 +23,15 @@ router.get('/auth/google',
 
 router.get( '/auth/google/callback',
     passport.authenticate( 'google', {
-        successRedirect: '/success',
+        successRedirect: '/articles',
         failureRedirect: '/failure'
 }));
+
+router.get('/auth/github', passport.authenticate('github'));
+
+router.get('/auth/github/callback',passport.authenticate('github', 
+  {failureRedirect: '/failure'}), (req, res) => {
+    res.redirect('/articles');
+});
 
 module.exports = router;
